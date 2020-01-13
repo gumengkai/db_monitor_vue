@@ -1,0 +1,11 @@
+import ChartPie from './pie.vue'
+import ChartBar from './bar.vue'
+import SimpleChartPie from './simpe-pie.vue'
+import ChartPie3 from './pie-3.vue'
+import ChartLine1 from './line-1.vue'
+import ChartLine2 from './line-2.vue'
+import ChartLine3 from './line-3.vue'
+import ChartLine4 from './line-4.vue'
+import ChartLine5 from './line-5.vue'
+import ChartLine6 from './line-6.vue'
+export { ChartPie, ChartBar,SimpleChartPie,ChartPie3,ChartLine1,ChartLine2,ChartLine3,ChartLine4,ChartLine5,ChartLine6 }
