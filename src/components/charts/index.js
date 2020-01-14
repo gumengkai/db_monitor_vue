@@ -8,4 +8,4 @@ import ChartLine3 from './line-3.vue'
 import ChartLine4 from './line-4.vue'
 import ChartLine5 from './line-5.vue'
 import ChartLine6 from './line-6.vue'
-export { ChartPie, ChartBar,SimpleChartPie,ChartPie3,ChartLine1,ChartLine2,ChartLine3,ChartLine4,ChartLine5,ChartLine6 }
+export { ChartPie, ChartBar, SimpleChartPie, ChartPie3, ChartLine1, ChartLine2, ChartLine3, ChartLine4, ChartLine5, ChartLine6 }

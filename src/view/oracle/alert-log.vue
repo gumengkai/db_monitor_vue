@@ -42,8 +42,8 @@
 
 <script>
 import { getAlertLog } from '@/api/system'
-import formatDate from '@/libs/tools'
-import Tag from 'iview'
+import { formatDate } from '@/libs/tools'
+import { Tag } from 'iview'
 import { OracleMenu } from '_c/top-menu'
 export default {
   components: {

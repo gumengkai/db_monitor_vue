@@ -25,7 +25,7 @@ export default {
       let option = {
         tooltip: {
           trigger: 'item',
-          formatter: "{a} <br/>{b} : {c} ({d}%)"
+          formatter: '{a} <br/>{b} : {c} ({d}%)'
         },
         series: [{
           name: '健康度',
@@ -39,43 +39,43 @@ export default {
           }, {
             value: this.value[2],
             name: '告警'
-        }, {
+          }, {
             value: this.value[1],
             name: '危险'
-        }],
-        label: {
+          }],
+          label: {
             normal: {
-                textStyle: {
-                    color: '#999',
-                    fontSize: 12,
-                }
+              textStyle: {
+                color: '#999',
+                fontSize: 12
+              }
             }
-        },
-        labelLine: {
+          },
+          labelLine: {
             normal: {
-                show: false
+              show: false
             }
-        },
-        itemStyle: {
+          },
+          itemStyle: {
             normal: {
-                borderWidth: 1,
-                borderColor: '#ffffff',
+              borderWidth: 1,
+              borderColor: '#ffffff'
             },
             emphasis: {
-                borderWidth: 0,
-                shadowBlur: 10,
-                shadowOffsetX: 0,
-                shadowColor: 'rgba(0, 0, 0, 0.5)'
+              borderWidth: 0,
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)'
             }
-        }
-    }],
-    color: [
-        '#22d4bf',
-        '#d4cda6',
-        '#d45356'
-    ],
-    backgroundColor: '#fff'
- }
+          }
+        }],
+        color: [
+          '#22d4bf',
+          '#d4cda6',
+          '#d45356'
+        ],
+        backgroundColor: '#fff'
+      }
       this.dom = echarts.init(this.$refs.dom, 'tdTheme')
       this.dom.setOption(option)
     },
@@ -92,12 +92,12 @@ export default {
   },
   watch: {
     value: {
-        handler(newVal, oldVal) {
-          this.init();
-        },
-        deep: true
+      handler (newVal, oldVal) {
+        this.init()
+      },
+      deep: true
     }
-},
+  },
   beforeDestroy () {
     off(window, 'resize', this.resize)
   }

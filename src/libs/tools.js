@@ -249,32 +249,34 @@ export function formatDate (date, fmt) {
     'S': date.getMilliseconds() // 毫秒
   }
   if (/(y+)/.test(fmt)) {
-      fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length))
+    fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length))
   }
   for (var k in o) {
-      if (new RegExp('(' + k + ')').test(fmt)) {
-          fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (('00' + o[k]).substr(('' + o[k]).length)))
-      }
+    if (new RegExp('(' + k + ')').test(fmt)) {
+      fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (('00' + o[k]).substr(('' + o[k]).length)))
+    }
   }
   return fmt
 }
 
-export function statuscheck(arr) {
-  var statusArr = [];
+export function statuscheck (arr) {
+  var statusArr = []
   var temp = ''
-  var count_0=0,count_1=0,count_2=0;
-  for (var i=0;i<arr.length;i++){
-    temp = arr[i];
-    if (temp.status == 0) {
-      count_0++;
+  var count_0 = 0
+  var count_1 = 0
+  var count_2 = 0
+  for (var i = 0; i < arr.length; i++) {
+    temp = arr[i]
+    if (temp.status === 0) {
+      count_0++
     }
-    if (temp.status == 1) {
-      count_1++;
+    if (temp.status === 1) {
+      count_1++
     }
-    if (temp.status == 2) {
-      count_2++;
+    if (temp.status === 2) {
+      count_2++
     }
   }
-  statusArr = [count_0,count_1,count_2];
+  statusArr = [count_0, count_1, count_2]
   return statusArr
 }

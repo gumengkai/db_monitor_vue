@@ -34,43 +34,42 @@
 </template>
 
 <script>
-    export default {
-      name: "redis-menu",
-      props: {
-        value: String,
-        tags: String
-      },
-      data() {
-        return {
-          view: '',
-          immediatestats:'',
-          slowlog: '',
-          clientlist:'',
-          config: '',
-          alertlog: '',
-          slowquerylog: '',
-          commandstats: ''
-        }
-      },
-      methods: {
-        init(){
-          this.view = '/redis/' + this.tags + '/view'
-          this.immediatestats = '/redis/' + this.tags + '/immediate-stats'
-          this.slowlog = '/redis/' + this.tags + '/slowlog'
-          this.config = '/redis/' + this.tags + '/config'
-          this.clientlist = '/redis/' + this.tags + '/clientlist'
-          this.slowquerylog = '/redis/' + this.tags + '/slowquery-log'
-          this.commandstats = '/redis/' + this.tags + '/commandstats'
-          this.alertlog = '/redis/' + this.tags + '/alert-log'
-
-        }
-      },
-      mounted() {
-        this.$nextTick(() => {
-          this.init();
-    })
-      }
+export default {
+  name: 'redis-menu',
+  props: {
+    value: String,
+    tags: String
+  },
+  data () {
+    return {
+      view: '',
+      immediatestats: '',
+      slowlog: '',
+      clientlist: '',
+      config: '',
+      alertlog: '',
+      slowquerylog: '',
+      commandstats: ''
     }
+  },
+  methods: {
+    init () {
+      this.view = '/redis/' + this.tags + '/view'
+      this.immediatestats = '/redis/' + this.tags + '/immediate-stats'
+      this.slowlog = '/redis/' + this.tags + '/slowlog'
+      this.config = '/redis/' + this.tags + '/config'
+      this.clientlist = '/redis/' + this.tags + '/clientlist'
+      this.slowquerylog = '/redis/' + this.tags + '/slowquery-log'
+      this.commandstats = '/redis/' + this.tags + '/commandstats'
+      this.alertlog = '/redis/' + this.tags + '/alert-log'
+    }
+  },
+  mounted () {
+    this.$nextTick(() => {
+      this.init()
+    })
+  }
+}
 </script>
 
 <style scoped>

@@ -28,7 +28,7 @@ export default {
     resize () {
       this.dom.resize()
     },
-    init(){
+    init () {
       let xAxisData = this.data1
       let seriesData1 = this.data2
       let seriesData2 = this.data3
@@ -38,22 +38,22 @@ export default {
       let seriesData6 = this.data7
       let option = {
         title: {
-         text: this.title[0],
-         subtext: '',
-          left: "center",
-          bottom: "5%",
+          text: this.title[0],
+          subtext: '',
+          left: 'center',
+          bottom: '5%'
         },
         tooltip: {
-         trigger: 'axis',
-         axisPointer: {
-             type: 'cross'
-         }
+          trigger: 'axis',
+          axisPointer: {
+            type: 'cross'
+          }
         },
         legend: {
-        data: this.title
+          data: this.title
         },
         toolbox: {
-         show: true
+          show: true
         },
         xAxis: {
           type: 'category',
@@ -64,145 +64,145 @@ export default {
         yAxis: {
           type: 'value',
           axisLabel: {
-             formatter: '{value}'
+            formatter: '{value}'
           },
           axisPointer: {
-          snap: true
-         },
+            snap: true
+          }
         },
         series: [
           {
-          name:this.title[1],
-          data: seriesData1,
-          type: 'line',
-          smooth: true,
-          itemStyle: {
-            normal: {
-              color: "#97d4b7"
+            name: this.title[1],
+            data: seriesData1,
+            type: 'line',
+            smooth: true,
+            itemStyle: {
+              normal: {
+                color: '#97d4b7'
+              }
+            },
+            lineStyle: {
+              normal: {
+                color: '#97d4b7'
+              }
+            },
+            areaStyle: {
+              normal: {
+                color: '#97d4b7',
+                opacity: 0.8
+              }
             }
           },
-          lineStyle: {
-            normal: {
-              color: "#97d4b7"
-            }
-          },
-          areaStyle: {
-            normal: {
-              color: "#97d4b7",
-              opacity: 0.8
-            }
-          }
-        },
-        {
-          name: this.title[2],
-          data: seriesData2,
-          type: 'line',
-          smooth: true,
-          itemStyle: {
-            normal: {
-              color: "#d4d098"
-            }
-          },
-          lineStyle: {
-            normal: {
-              color: "#d4d098"
-            }
-          },
-          areaStyle: {
-            normal: {
-              color: "#d4d098",
-              opacity: 0.8
-            }
-          }
-        },
           {
-          name: this.title[3],
-          data: seriesData3,
-          type: 'line',
-          smooth: true,
-          itemStyle: {
-            normal: {
-              color: "#d48388"
+            name: this.title[2],
+            data: seriesData2,
+            type: 'line',
+            smooth: true,
+            itemStyle: {
+              normal: {
+                color: '#d4d098'
+              }
+            },
+            lineStyle: {
+              normal: {
+                color: '#d4d098'
+              }
+            },
+            areaStyle: {
+              normal: {
+                color: '#d4d098',
+                opacity: 0.8
+              }
             }
           },
-          lineStyle: {
-            normal: {
-              color: "#d48388"
-            }
-          },
-          areaStyle: {
-            normal: {
-              color: "#d48388",
-              opacity: 0.8
-            }
-          }
-        },
           {
-          name: this.title[4],
-          data: seriesData4,
-          type: 'line',
-          smooth: true,
-          itemStyle: {
-            normal: {
-              color: "#be9cd4"
+            name: this.title[3],
+            data: seriesData3,
+            type: 'line',
+            smooth: true,
+            itemStyle: {
+              normal: {
+                color: '#d48388'
+              }
+            },
+            lineStyle: {
+              normal: {
+                color: '#d48388'
+              }
+            },
+            areaStyle: {
+              normal: {
+                color: '#d48388',
+                opacity: 0.8
+              }
             }
           },
-          lineStyle: {
-            normal: {
-              color: "#be9cd4"
-            }
-          },
-          areaStyle: {
-            normal: {
-              color: "#be9cd4",
-              opacity: 0.8
-            }
-          }
-        },
           {
-          name: this.title[5],
-          data: seriesData5,
-          type: 'line',
-          smooth: true,
-          itemStyle: {
-            normal: {
-              color: "#4bc0ce"
+            name: this.title[4],
+            data: seriesData4,
+            type: 'line',
+            smooth: true,
+            itemStyle: {
+              normal: {
+                color: '#be9cd4'
+              }
+            },
+            lineStyle: {
+              normal: {
+                color: '#be9cd4'
+              }
+            },
+            areaStyle: {
+              normal: {
+                color: '#be9cd4',
+                opacity: 0.8
+              }
             }
           },
-          lineStyle: {
-            normal: {
-              color: "#4bc0ce"
-            }
-          },
-          areaStyle: {
-            normal: {
-              color: "#4bc0ce",
-              opacity: 0.8
-            }
-          }
-        },
           {
-          name: this.title[6],
-          data: seriesData6,
-          type: 'line',
-          smooth: true,
-          itemStyle: {
-            normal: {
-              color: "#bdcecb"
+            name: this.title[5],
+            data: seriesData5,
+            type: 'line',
+            smooth: true,
+            itemStyle: {
+              normal: {
+                color: '#4bc0ce'
+              }
+            },
+            lineStyle: {
+              normal: {
+                color: '#4bc0ce'
+              }
+            },
+            areaStyle: {
+              normal: {
+                color: '#4bc0ce',
+                opacity: 0.8
+              }
             }
           },
-          lineStyle: {
-            normal: {
-              color: "#bdcecb"
-            }
-          },
-          areaStyle: {
-            normal: {
-              color: "#bdcecb",
-              opacity: 0.8
+          {
+            name: this.title[6],
+            data: seriesData6,
+            type: 'line',
+            smooth: true,
+            itemStyle: {
+              normal: {
+                color: '#bdcecb'
+              }
+            },
+            lineStyle: {
+              normal: {
+                color: '#bdcecb'
+              }
+            },
+            areaStyle: {
+              normal: {
+                color: '#bdcecb',
+                opacity: 0.8
+              }
             }
           }
-        }
         ]
       }
       this.dom = echarts.init(this.$refs.dom, 'tdTheme')
@@ -211,18 +211,18 @@ export default {
   },
   mounted () {
     this.$nextTick(() => {
-      this.init();
+      this.init()
       on(window, 'resize', this.resize)
     })
   },
   watch: {
     data1: {
-        handler(newVal, oldVal) {
-          this.init();
-        },
-        deep: true
+      handler (newVal, oldVal) {
+        this.init()
+      },
+      deep: true
     }
-},
+  },
   beforeDestroy () {
     off(window, 'resize', this.resize)
   }

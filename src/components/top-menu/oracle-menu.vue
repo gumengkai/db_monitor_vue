@@ -30,38 +30,38 @@
 </template>
 
 <script>
-    export default {
-      name: "oracle-menu",
-      props: {
-        value: String,
-        tags: String
-      },
-      data() {
-        return {
-          view: '',
-          resource: '',
-          activesession: '',
-          performance: '',
-          alertlog: '',
-          tablestats: ''
-        }
-      },
-      methods: {
-        init(){
-          this.view = '/oracle/' + this.tags + '/view'
-          this.resource = '/oracle/' + this.tags + '/resource'
-          this.activesession = '/oracle/' + this.tags + '/active-session'
-          this.performance = '/oracle/' + this.tags + '/performance'
-          this.alertlog = '/oracle/' + this.tags + '/alert-log'
-          this.tablestats = '/oracle/' + this.tags + '/table-stats'
-        }
-      },
-      mounted() {
-        this.$nextTick(() => {
-          this.init();
-    })
-      }
+export default {
+  name: 'oracle-menu',
+  props: {
+    value: String,
+    tags: String
+  },
+  data () {
+    return {
+      view: '',
+      resource: '',
+      activesession: '',
+      performance: '',
+      alertlog: '',
+      tablestats: ''
     }
+  },
+  methods: {
+    init () {
+      this.view = '/oracle/' + this.tags + '/view'
+      this.resource = '/oracle/' + this.tags + '/resource'
+      this.activesession = '/oracle/' + this.tags + '/active-session'
+      this.performance = '/oracle/' + this.tags + '/performance'
+      this.alertlog = '/oracle/' + this.tags + '/alert-log'
+      this.tablestats = '/oracle/' + this.tags + '/table-stats'
+    }
+  },
+  mounted () {
+    this.$nextTick(() => {
+      this.init()
+    })
+  }
+}
 
 </script>
 

@@ -30,36 +30,36 @@
 </template>
 
 <script>
-    export default {
-      name: "redis-menu",
-      props: {
-        value: String,
-        tags: String
-      },
-      data() {
-        return {
-          view: '',
-          myisam: '',
-          innodb: '',
-          alertlog: '',
-          slowquerylog: ''
-        }
-      },
-      methods: {
-        init(){
-          this.view = '/mysql/' + this.tags + '/view'
-          this.myisam = '/mysql/' + this.tags + '/myisam'
-          this.innodb = '/mysql/' + this.tags + '/innodb'
-          this.alertlog = '/mysql/' + this.tags + '/alert-log'
-          this.slowquerylog = '/mysql/' + this.tags + '/slowquery-log'
-        }
-      },
-      mounted() {
-        this.$nextTick(() => {
-          this.init();
-    })
-      }
+export default {
+  name: 'redis-menu',
+  props: {
+    value: String,
+    tags: String
+  },
+  data () {
+    return {
+      view: '',
+      myisam: '',
+      innodb: '',
+      alertlog: '',
+      slowquerylog: ''
     }
+  },
+  methods: {
+    init () {
+      this.view = '/mysql/' + this.tags + '/view'
+      this.myisam = '/mysql/' + this.tags + '/myisam'
+      this.innodb = '/mysql/' + this.tags + '/innodb'
+      this.alertlog = '/mysql/' + this.tags + '/alert-log'
+      this.slowquerylog = '/mysql/' + this.tags + '/slowquery-log'
+    }
+  },
+  mounted () {
+    this.$nextTick(() => {
+      this.init()
+    })
+  }
+}
 </script>
 
 <style scoped>

@@ -14,9 +14,9 @@ baseUrl:
     dev: 测试
     pro: 线上
 3. 安装依赖包
-npm install
+yarn install
 4. 开发环境运行
-npm run dev
+yarn run dev
 ```
 
 ## 编译
@@ -24,7 +24,7 @@ npm run dev
 > dist
 
 ```bush
-npm run build
+yarn build
 ```
 
 将dist文件夹部署到nginx即可

@@ -33,6 +33,7 @@
 <script>
 import { getRedisStatList } from '@/api/redis'
 import { Tag } from 'iview'
+import { formatDate } from '@/libs/tools'
 export default {
   data () {
     return {
@@ -136,7 +137,7 @@ export default {
             if (hits_rate !== -1 && hits_rate > 0.6 && hits_rate < 1) {
               return h(Tag, { props: { color: 'warning' } }, hits_rate)
             } else {
-              return ''
+              return h(Tag, { props: { color: 'success' } }, hits_rate)
             }
           }
         },

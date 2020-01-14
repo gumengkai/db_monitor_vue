@@ -32,8 +32,8 @@
 
 <script>
 import { getOracleStatList } from '@/api/oracle'
-import formatDate from '@/libs/tools'
-import Tag from 'iview'
+import { formatDate } from '@/libs/tools'
+import { Tag } from 'iview'
 export default {
   data () {
     return {

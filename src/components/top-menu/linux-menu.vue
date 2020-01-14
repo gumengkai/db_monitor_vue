@@ -18,32 +18,32 @@
 </template>
 
 <script>
-    export default {
-      name: "linux-menu",
-      props: {
-        value: String,
-        tags: String
-      },
-      data() {
-        return {
-          view: '',
-          io: '',
-          memory: ''
-        }
-      },
-      methods: {
-        init(){
-          this.view = '/linux/' + this.tags + '/view'
-          this.io = '/linux/' + this.tags + '/io'
-          this.memory = '/linux/' + this.tags + '/memory'
-        }
-      },
-      mounted() {
-        this.$nextTick(() => {
-          this.init();
-    })
-      }
+export default {
+  name: 'linux-menu',
+  props: {
+    value: String,
+    tags: String
+  },
+  data () {
+    return {
+      view: '',
+      io: '',
+      memory: ''
     }
+  },
+  methods: {
+    init () {
+      this.view = '/linux/' + this.tags + '/view'
+      this.io = '/linux/' + this.tags + '/io'
+      this.memory = '/linux/' + this.tags + '/memory'
+    }
+  },
+  mounted () {
+    this.$nextTick(() => {
+      this.init()
+    })
+  }
+}
 </script>
 
 <style scoped>

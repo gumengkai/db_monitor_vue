@@ -183,7 +183,7 @@ export default {
       getRedisStat(parameter).then(res => {
         this.redisinfo = res.data.results[0]
         const redis_sta = this.redisinfo.status
-        if (redis_sta == 0) {
+        if (redis_sta === 0) {
           this.redis_status = '运行中'
         } else {
           this.redis_status = '连接失败'
