@@ -72,7 +72,6 @@
 <script>
 import { CountTo } from '_c/count-to'
 import { ChartPie, ChartBar, ChartPie3 } from '_c/charts'
-
 import { getAlarmInfo } from '@/api/system'
 import { getLinuxStatList } from '@/api/linux'
 import { getOracleStatList } from '@/api/oracle'
