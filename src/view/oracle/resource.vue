@@ -86,7 +86,7 @@
 import { OracleMenu } from '_c/top-menu'
 import { getOracleTableSpace, getOracleTempTableSpace, getOracleUndoTableSpace,
   getOracleUndoTableSpaceUsed, getOracleControlFile, getOracleRedoLog, getOracleRedoLogSwitch } from '@/api/oracle'
-import formatDate from '@/libs/tools'
+import { formatDate } from '@/libs/tools'
 import { Tag } from 'iview'
 import { ChartBar, ChartLine1 } from '_c/charts'
 

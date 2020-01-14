@@ -29,8 +29,7 @@
 
 <script>
 import { OracleMenu } from '_c/top-menu'
-import InforCard from '_c/info-card'
-import CountTo from '_c/count-to'
+import { CountTo } from '_c/count-to'
 import { getOracleStatHis } from '@/api/oracle'
 import { ChartLine1, ChartLine2 } from '_c/charts'
 
@@ -38,7 +37,6 @@ export default {
   name: 'oracle_view',
   components: {
     OracleMenu,
-    InforCard,
     CountTo,
     ChartLine1,
     ChartLine2

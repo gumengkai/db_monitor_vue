@@ -25,7 +25,7 @@
 
 <script>
 import { getOracleTableStats } from '@/api/oracle'
-import formatDate from '@/libs/tools'
+import { formatDate } from '@/libs/tools'
 import { Tag } from 'iview'
 import { OracleMenu } from '_c/top-menu'
 export default {

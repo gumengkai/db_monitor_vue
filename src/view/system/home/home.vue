@@ -70,8 +70,7 @@
 </template>
 
 <script>
-import InforCard from '_c/info-card'
-import CountTo from '_c/count-to'
+import { CountTo } from '_c/count-to'
 import { ChartPie, ChartBar, ChartPie3 } from '_c/charts'
 
 import { getAlarmInfo } from '@/api/system'
@@ -84,7 +83,6 @@ import { statuscheck } from '@/libs/tools'
 export default {
   name: 'home',
   components: {
-    InforCard,
     CountTo,
     ChartPie,
     ChartBar,
