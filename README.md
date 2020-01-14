@@ -7,7 +7,7 @@
 
 ```bush
 1. 下载项目源码
-git clone https://github.com/
+git clone https://github.com/gumengkai/db_monitor_vue
 
 2. 修改后端API连接地址
 src/config/index.js
