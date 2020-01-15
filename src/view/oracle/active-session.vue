@@ -83,7 +83,7 @@
          </row>
 
     <Card>
-      <Tabs value="active_session">
+      <Tabs @on-click="changeTab" value="active_session">
         <TabPane label="活动会话(实时)" name="active_session">
         <Table size="small"
                :columns="activesessionColumns"
@@ -332,17 +332,13 @@ export default {
   },
   created () {
     this.get_oracle_stat(`tags=${this.$route.params.tags} `)
-    this.get_oracle_stat_his(`tags=${this.$route.params.tags} `)
     this.get_oracle_active_session(`tags=${this.$route.params.tags} `)
-    this.get_oracle_blocking_session(`tags=${this.$route.params.tags} `)
     this.get_oracle_session_count(`tags=${this.$route.params.tags} `)
     this.get_oracle_block_count(`tags=${this.$route.params.tags} `)
     this.Tags = this.$route.params.tags
     this.timer = setInterval(() => {
       this.get_oracle_stat(`tags=${this.$route.params.tags} `)
-      this.get_oracle_stat_his(`tags=${this.$route.params.tags} `)
       this.get_oracle_active_session(`tags=${this.$route.params.tags} `)
-      this.get_oracle_blocking_session(`tags=${this.$route.params.tags} `)
       this.get_oracle_session_count(`tags=${this.$route.params.tags} `)
       this.get_oracle_block_count(`tags=${this.$route.params.tags} `)
     }, 1000 * 2000)
@@ -422,6 +418,12 @@ export default {
         title: 'SQL文本信息',
         content: `${this.activesessionData[index].SQL_TEXT}`
       })
+    },
+    changeTab (value) {
+      if (value === 'blocking_session') {
+        this.get_oracle_stat_his(`tags=${this.$route.params.tags} `)
+        this.get_oracle_blocking_session(`tags=${this.$route.params.tags} `)
+      }
     }
   },
 

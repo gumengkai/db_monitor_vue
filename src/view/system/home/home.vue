@@ -7,7 +7,7 @@
               <Icon type="ios-pie"></Icon>
               Linux服务器
           </p>
-          <p style="font-size: small; color: darkgrey" >
+          <p style="font-size: small; color: black" >
               总数量：{{this.linux_count}}
           </p>
           <chart-pie3 style="height: 160px;" :value="this.LinuxData" text="Linux"></chart-pie3>
@@ -19,7 +19,7 @@
               <Icon type="ios-pie"></Icon>
               Oracle数据库
           </p>
-          <p style="font-size: small; color: darkgrey" >
+          <p style="font-size: small; color: black" >
               总数量：{{this.oracle_count}}
           </p>
           <chart-pie3 style="height: 160px;" :value="OracleData" text="Oracle"></chart-pie3>
@@ -31,7 +31,7 @@
               <Icon type="ios-pie"></Icon>
               MySQL数据库
           </p>
-          <p style="font-size: small; color: darkgrey" >
+          <p style="font-size: small; color: black" >
               总数量：{{this.mysql_count}}
           </p>
           <chart-pie3 style="height: 160px;" :value="MysqlData" text="MySQL"></chart-pie3>
@@ -43,13 +43,13 @@
               <Icon type="ios-pie"></Icon>
               Redis
           </p>
-          <p style="font-size: small; color: darkgrey" >
+          <p style="font-size: small; color: black" >
               总数量：{{this.redis_count}}
           </p>
           <chart-pie3 style="height: 160px;" :value="RedisData" text="Redis"></chart-pie3>
         </Card>
       </i-col>
-      <i-col span="12">
+      <i-col span="14">
         <card>
           <p slot="title" style="font-size: larger">
               <Icon type="ios-warning"></Icon>
@@ -58,7 +58,7 @@
           <Scroll>
           <List>
         <ListItem v-for="(info) in alarminfoList" :key="info">
-            <ListItemMeta :title="info.alarm_header" :description="info.alarm_content" />
+            <ListItemMeta :title="info.alarm_header"  :description="info.alarm_content" />
         </ListItem>
     </List>
           </Scroll>

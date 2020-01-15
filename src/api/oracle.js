@@ -91,10 +91,51 @@ export const getOracleUndoTableSpaceUsed = parameter => {
   })
 }
 
-
 export const getOracleUndoTableSpaceSessionUsed = parameter => {
   return axios.request({
     url: `/oracle/api/oracle-undotablespace-sessionused?${parameter}`,
+    method: 'get'
+  })
+}
+
+export const getOracleTopSegment = parameter => {
+  return axios.request({
+    url: `/oracle/api/oracle-top-segment?${parameter}`,
+    method: 'get'
+  })
+}
+
+export const getOracleSequenceUsed = parameter => {
+  return axios.request({
+    url: `/oracle/api/oracle-sequence-used?${parameter}`,
+    method: 'get'
+  })
+}
+
+export const getOracleUser = parameter => {
+  return axios.request({
+    url: `/oracle/api/oracle-user?${parameter}`,
+    method: 'get'
+  })
+}
+
+export const getOracleProfile = parameter => {
+  return axios.request({
+    url: `/oracle/api/oracle-profile?${parameter}`,
+    method: 'get'
+  })
+}
+
+export const getOracleUserRole = parameter => {
+  return axios.request({
+    url: `/oracle/api/oracle-user-role?${parameter}`,
+    method: 'get'
+  })
+}
+
+export const getOracleUserGrant = parameter => {
+  return axios.request({
+    url: `/oracle/api/oracle-user-grant?${parameter}`,
     method: 'get'
   })
 }
@@ -147,7 +188,6 @@ export const getOracleRedoLog = parameter => {
     method: 'get'
   })
 }
-
 
 export const getOracleRedoLogSwitch = parameter => {
   return axios.request({

@@ -3,6 +3,9 @@
      <Layout>
        <oracle-menu :value="'2'" :tags="this.Tags" ></oracle-menu>
        <Content :style="{margin: '10px 0 0', background: '#fff', minHeight: '500px'}">
+  <Tabs type="line" @on-click="changeTab" value="storage">
+    <TabPane label="存储" name="storage">
+      <row>
     <Card>
       <p slot="title">表空间</p>
         <Table size="small"
@@ -16,7 +19,6 @@
               show-elevator
               show-total />
     </Card>
-         <row>
            <i-col span="12">
      <card>
        <p slot="title">临时表空间</p>
@@ -77,6 +79,66 @@
     </Card>
         </i-col>
          </Row>
+    </TabPane>
+    <TabPane label="TOP段空间" name="top_segment">
+         <Card>
+      <p slot="title">top50段空间</p>
+        <Table size="small"
+               :columns="columns_top_segment"
+               :data="data_top_segment"
+               border >
+        </Table>
+    </Card>
+    </TabPane>
+    <TabPane label="序列" name="sequence_used">
+         <Card>
+      <p slot="title">序列使用情况</p>
+        <Table size="small"
+               :columns="columns_sequence_used"
+               :data="data_sequence_used"
+               border>
+        </Table>
+    </Card>
+    </TabPane>
+      <TabPane label="用户&权限" name="user">
+         <Card>
+      <p slot="title">账号信息</p>
+        <Table size="small"
+               :columns="columns_user"
+               :data="data_user"
+               border>
+        </Table>
+    </Card>
+    <Modal cancel-text=""
+        v-model="modal_profile"
+        width="600"
+        title="用户配置信息">
+      <Table size="small"
+          :columns="columns_profile"
+          :data="data_profile">
+     </Table>
+    </Modal>
+    <Modal cancel-text=""
+        v-model="modal_permission"
+        width="550"
+        title="用户角色&权限">
+      <card>
+      <p slot="title">角色</p>
+      <Table size="small"
+          :columns="columns_user_role"
+          :data="data_user_role">
+     </Table>
+      </card>
+      <card>
+     <p slot="title">系统权限</p>
+      <Table size="small"
+          :columns="columns_user_grant"
+          :data="data_user_grant">
+     </Table>
+      </card>
+    </Modal>
+    </TabPane>
+  </Tabs>
             </Content>
         </Layout>
   </div>
@@ -85,7 +147,9 @@
 <script>
 import { OracleMenu } from '_c/top-menu'
 import { getOracleTableSpace, getOracleTempTableSpace, getOracleUndoTableSpace,
-  getOracleUndoTableSpaceUsed, getOracleControlFile, getOracleRedoLog, getOracleRedoLogSwitch } from '@/api/oracle'
+  getOracleUndoTableSpaceUsed, getOracleControlFile, getOracleRedoLog, getOracleRedoLogSwitch,
+  getOracleTopSegment, getOracleSequenceUsed, getOracleUser, getOracleProfile,
+  getOracleUserRole, getOracleUserGrant } from '@/api/oracle'
 import { formatDate } from '@/libs/tools'
 import { Tag } from 'iview'
 import { ChartBar, ChartLine1 } from '_c/charts'
@@ -103,6 +167,8 @@ export default {
       redo_range: 7,
       modal_undo: false,
       modal_redo: false,
+      modal_profile: false,
+      modal_permission: false,
       columns_tablespace: [
         {
           type: 'index',
@@ -347,12 +413,234 @@ export default {
           width: 100
         }
       ],
+      columns_top_segment: [
+        {
+          title: '用户',
+          key: 'OWNER',
+          width: 150
+        },
+        {
+          title: '段名',
+          key: 'SEGMENT_NAME',
+          width: 200
+        },
+        {
+          title: '分区名',
+          key: 'PARTITION_NAME',
+          width: 200
+        },
+        {
+          title: '类型',
+          key: 'SEGMENT_TYPE',
+          width: 150
+        },
+        {
+          title: '表空间',
+          key: 'TABLESPACE_NAME',
+          width: 150
+        },
+        {
+          title: '使用空间(M)',
+          key: 'SEGMENT_SIZE',
+          width: 150
+        }
+      ],
+      columns_sequence_used: [
+        {
+          title: '用户',
+          key: 'SEQUENCE_OWNER',
+          width: 180
+        },
+        {
+          title: '序列名',
+          key: 'SEQUENCE_NAME',
+          width: 180
+        },
+        {
+          title: '最小序列号',
+          key: 'MIN_VALUE',
+          width: 120
+        },
+        {
+          title: '最大序列号',
+          key: 'MAX_VALUE',
+          width: 150
+        },
+        {
+          title: '序列自增量',
+          key: 'INCREMENT_BY',
+          width: 100
+        },
+        {
+          title: '是否循环',
+          key: 'CYCLE_FLAG',
+          width: 100
+        },
+        {
+          title: '是否按顺序',
+          key: 'CYCLE_FLAG',
+          width: 100
+        },
+        {
+          title: '缓存值',
+          key: 'CACHE_SIZE',
+          width: 80
+        },
+        {
+          title: '最后序列号',
+          key: 'LAST_NUMBER',
+          width: 100
+        }
+      ],
+      columns_user: [
+        {
+          title: '用户名',
+          key: 'USERNAME',
+          width: 120
+        },
+        {
+          title: '创建时间',
+          key: 'CREATED',
+          width: 150
+        },
+        {
+          title: '配置策略',
+          width: 110,
+          sortable: true,
+          render: (h, params) => {
+            const profile = params.row.PROFILE
+            return h('a', {
+              on: {
+                'click': () => {
+                  this.get_oracle_profile(`tags=${this.$route.params.tags}&profile=${profile} `)
+                  this.modal_profile = true
+                }
+              }
+            }, params.row.PROFILE)
+          }
+        },
+        {
+          title: '账号状态',
+          key: 'ACCOUNT_STATUS',
+          width: 120
+        },
+        {
+          title: '锁定时间',
+          key: 'LOCK_DATE',
+          width: 150
+        },
+        {
+          title: '到期时间',
+          key: 'EXPIRR_DATE',
+          width: 150
+        },
+        {
+          title: '角色&权限',
+          key: 'action',
+          width: 120,
+          align: 'center',
+          render: (h, params) => {
+            debugger
+            const user = params.row.USERNAME
+            return h('div', [
+              h('Button', {
+                props: {
+                  type: 'primary',
+                  size: 'small'
+                },
+                style: {
+                  marginRight: '5px'
+                },
+                on: {
+                  click: () => {
+                    this.modal_permission = true
+                    this.get_oracle_user_role(`tags=${this.$route.params.tags}&user=${user} `)
+                    this.get_oracle_user_grant(`tags=${this.$route.params.tags}&user=${user} `)
+                  }
+                }
+              }, '查看')
+            ])
+          }
+        },
+        {
+          title: '默认表空间',
+          key: 'DEFAULT_TABLESPACE',
+          width: 100
+        },
+        {
+          title: '临时表空间',
+          key: 'TEMPORARY_TABLESPACE',
+          width: 100
+        }
+      ],
+      columns_profile: [
+        {
+          title: '配置',
+          key: 'PROFILE',
+          width: 120
+        },
+        {
+          title: '资源',
+          key: 'RESOURCE_NAME',
+          width: 200
+        },
+        {
+          title: '资源类型',
+          key: 'RESOURCE_TYPE',
+          width: 150
+        },
+        {
+          title: '资源限制',
+          key: 'LIMIT',
+          width: 150
+        }
+      ],
+      columns_user_role: [
+        {
+          title: '用户名',
+          key: 'GRANTEE',
+          width: 120
+        },
+        {
+          title: '角色权限',
+          key: 'GRANTED_ROLE',
+          width: 200
+        },
+        {
+          title: '再授权',
+          key: 'ADMIN_OPTION',
+          width: 150
+        }
+      ],
+      columns_user_grant: [
+        {
+          title: '用户名',
+          key: 'GRANTEE',
+          width: 120
+        },
+        {
+          title: '权限',
+          key: 'PRIVILEGE',
+          width: 200
+        },
+        {
+          title: '再授权',
+          key: 'ADMIN_OPTION',
+          width: 150
+        }
+      ],
       data_undo_tablespace_used: [],
       data_tablespace: [],
       data_temp_tablespace: [],
       data_undo_tablespace: [],
       data_controlfile: [],
       data_redolog: [],
+      data_top_segment: [],
+      data_sequence_used: [],
+      data_user: [],
+      data_profile: [],
+      data_user_role: [],
+      data_user_grant: [],
       statdateData: [],
       redocntData: [],
       chart_title: ['日志切换次数', 'log count'],
@@ -463,9 +751,71 @@ export default {
         this.$Message.error(`获取redo切换信息错误 ${err}`)
       })
     },
+    get_oracle_top_segment () {
+      const parameter = `tags=${this.$route.params.tags} `
+      getOracleTopSegment(parameter).then(res => {
+        this.data_top_segment = res.data
+        console.log(this.data_top_segment)
+      }).catch(err => {
+        this.$Message.error(`获取top段信息错误 ${err}`)
+      })
+    },
+    get_oracle_sequence_used () {
+      const parameter = `tags=${this.$route.params.tags} `
+      getOracleSequenceUsed(parameter).then(res => {
+        this.data_sequence_used = res.data
+        console.log(this.data_sequence_used)
+      }).catch(err => {
+        this.$Message.error(`获取序列使用信息错误 ${err}`)
+      })
+    },
+    get_oracle_user () {
+      const parameter = `tags=${this.$route.params.tags} `
+      getOracleUser(parameter).then(res => {
+        this.data_user = res.data
+        console.log(this.data_user)
+      }).catch(err => {
+        this.$Message.error(`获取数据库账号信息错误 ${err}`)
+      })
+    },
+    get_oracle_profile (parameter) {
+      getOracleProfile(parameter).then(res => {
+        this.data_profile = res.data
+        console.log(this.data_profile)
+      }).catch(err => {
+        this.$Message.error(`获取用户配置信息错误 ${err}`)
+      })
+    },
+    get_oracle_user_role (parameter) {
+      getOracleUserRole(parameter).then(res => {
+        this.data_user_role = res.data
+        console.log(this.data_user_role)
+      }).catch(err => {
+        this.$Message.error(`获取用户角色信息错误 ${err}`)
+      })
+    },
+    get_oracle_user_grant (parameter) {
+      getOracleUserGrant(parameter).then(res => {
+        this.data_user_grant = res.data
+        console.log(this.data_user_grant)
+      }).catch(err => {
+        this.$Message.error(`获取用户授权信息错误 ${err}`)
+      })
+    },
+    changeTab (value) {
+      if (value === 'top_segment') {
+        this.get_oracle_top_segment(`tags=${this.$route.params.tags} `)
+      }
+      if (value === 'sequence_used') {
+        this.get_oracle_sequence_used(`tags=${this.$route.params.tags} `)
+      }
+      if (value === 'user') {
+        this.get_oracle_user(`tags=${this.$route.params.tags} `)
+      }
+    },
     get_oracle_parameter (parameter) {
       console.log(parameter)
-      this.get_oracle_stat_list(`page=${parameter}`)
+      this.get_oracle_tablespace_list(`page=${parameter}`)
     }
   },
   destroyed () {
