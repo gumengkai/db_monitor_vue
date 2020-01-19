@@ -1,7 +1,7 @@
 {
   "name": "db_monitor",
   "version": "1.0.0",
-  "author": "hequan<hequan2011@sina.com>",
+  "author": "gumengkai<gumengkai@hotmail.com>",
   "private": false,
   "scripts": {
     "dev": "vue-cli-service serve --open",
