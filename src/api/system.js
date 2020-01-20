@@ -14,6 +14,14 @@ export const getAlarmConf = parameter => {
   })
 }
 
+export const createAlarmConf = data => {
+  return axios.request({
+    url: `/system/api/alarm-conf`,
+    data: data,
+    method: 'post'
+  })
+}
+
 export const updateAlarmConf = (id, data) => {
   return axios.request({
     url: `/system/api/alarm-conf/${id}`,
@@ -22,13 +30,12 @@ export const updateAlarmConf = (id, data) => {
   })
 }
 
-export const deleteAlarmCconf = id => {
+export const deleteAlarmConf = id => {
   return axios.request({
     url: `/system/api/alarm-conf/${id}`,
     method: 'delete'
   })
 }
-
 
 export const getAlarmInfo = parameter => {
   return axios.request({
@@ -36,4 +43,3 @@ export const getAlarmInfo = parameter => {
     method: 'get'
   })
 }
-
