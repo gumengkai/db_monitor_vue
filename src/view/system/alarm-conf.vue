@@ -50,6 +50,7 @@
                   <Option value='2'>MySQL数据库</Option>
                   <Option value='3'>Redis</Option>
                   <Option value='4'>Linux主机</Option>
+                  <Option value='5'>MSSQL数据库</Option>
                 </Select>
               </FormItem>
               </Col>
@@ -147,7 +148,7 @@
 </template>
 
 <script>
-import { getAlarmConf, updateAlarmConf } from '@/api/system'
+import { getAlarmConf, updateAlarmConf , createAlarmConf, deleteAlarmConf} from '@/api/system'
 import { hasOneOf } from '@/libs/tools'
 export default {
   data () {
@@ -165,10 +166,11 @@ export default {
           width: 120,
           render: (h, params) => {
             const typeMap = {
-              1: { desc: 'Oracle数据库' },
+              1: { desc: 'Oracle数据库' },              
               2: { desc: 'MySQL数据库' },
               3: { desc: 'Redis' },
-              4: { desc: 'Linux主机' }
+              4: { desc: 'Linux主机' },
+              5: { desc: 'MSSQL数据库' }
             }
             const type = params.row.type
             return h('div', typeMap[type]['desc'])
@@ -247,8 +249,16 @@ export default {
                     this.remove(params.index, params.row.id)
                   }
                 }
-              }
-              )
+              }, [h('Button', {
+                props: {
+                  type: 'error',
+                  size: 'small'
+                },
+                style: {
+                  marginRight: '5px',
+                  display: (this.deleteAccessAll !== true) ? 'none' : 'inline-block'
+                }
+              }, '删除')])
             ])
           }
         }
@@ -395,7 +405,7 @@ export default {
     },
     remove (index, id) {
       console.log(index, id)
-      deleteLinux(id).then(res => {
+      deleteAlarmConf(id).then(res => {
         console.log(res)
         this.$Message.success('删除linux配置成功!')
         this.data.splice(index, 1)
