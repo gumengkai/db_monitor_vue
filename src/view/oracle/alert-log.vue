@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
      <Layout>
-       <oracle-menu :value="'6'" :tags="this.Tags"></oracle-menu>
+       <oracle-menu :value="'7'" :tags="this.Tags"></oracle-menu>
        <Content :style="{margin: '10px 0 0', background: '#fff', minHeight: '500px'}">
     <Card>
       <Row>

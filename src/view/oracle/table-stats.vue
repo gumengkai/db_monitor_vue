@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
      <Layout>
-       <oracle-menu :value="'5'" :tags="this.Tags"></oracle-menu>
+       <oracle-menu :value="'6'" :tags="this.Tags"></oracle-menu>
        <Content :style="{margin: '10px 0 0', background: '#fff', minHeight: '500px'}">
     <Card>
       <br>
@@ -35,9 +35,6 @@ export default {
   data () {
     return {
       Tags: '',
-      show: false,
-      logContent: '',
-      logLevel: '',
       columns: [
         {
           type: 'index',
@@ -91,7 +88,6 @@ export default {
       data: [],
       count: 0,
       page_size: 10,
-      create: false,
       styles: {
         height: 'calc(100% - 55px)',
         overflow: 'auto',
@@ -115,7 +111,6 @@ export default {
   },
   methods: {
     get_oracle_table_stats (parameter) {
-      debugger
       getOracleTableStats(parameter).then(res => {
         this.data = res.data.results
         this.count = res.data.count

@@ -195,3 +195,10 @@ export const getOracleRedoLogSwitch = parameter => {
     method: 'get'
   })
 }
+
+export const getOracleTopSql = parameter => {
+  return axios.request({
+    url: `/oracle/api/oracle-top-sql?${parameter}`,
+    method: 'get'
+  })
+}

@@ -57,7 +57,7 @@
           </p>
           <Scroll>
           <List>
-        <ListItem v-for="(info) in alarminfoList" :key="info">
+        <ListItem v-for="(info) in alarminfoList" :key="info.id">
             <ListItemMeta :title="info.alarm_header"  :description="info.alarm_content" />
         </ListItem>
     </List>
