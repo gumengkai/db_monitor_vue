@@ -309,10 +309,10 @@ export default {
         },
         {
           title: '状态',
-          key: 'system_level',
+          key: 'status',
           width: 90,
           render: (h, params) => {
-            const levelMap = {
+            const statusMap = {
               0: { color: 'green', desc: '在线' },
               1: { color: 'gray', desc: '备用' },
               2: { color: 'gray', desc: '下线' },
@@ -320,8 +320,8 @@ export default {
               4: { color: 'gray', desc: '维修' },
               5: { color: 'gray', desc: '重装' }
             }
-            const system_level = params.row.system_level
-            return h(Tag, { props: { color: levelMap[system_level]['color'] } }, levelMap[system_level]['desc'])
+            const status = params.row.status
+            return h(Tag, { props: { color: statusMap[status]['color'] } }, statusMap[status]['desc'])
           }
         },
         {
