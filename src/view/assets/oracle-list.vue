@@ -542,6 +542,7 @@ export default {
       this.$refs[name].validate((valid) => {
         console.log()
         if (valid) {
+          debugger
           if (!this.updateId) {
             createOracle(this.formData).then(res => {
               console.log(res)

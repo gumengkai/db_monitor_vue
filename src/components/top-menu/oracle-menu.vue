@@ -15,7 +15,7 @@
       </MenuItem>
       <MenuItem name="4" :to="this.performance">
         <Icon type="ios-pulse"></Icon>
-        性能图
+        性能
       </MenuItem>
       <MenuItem name="5" :to="this.topsql">
         <Icon type="md-sad"></Icon>

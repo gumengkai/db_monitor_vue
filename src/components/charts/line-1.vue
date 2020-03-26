@@ -24,7 +24,6 @@ export default {
       this.dom.resize()
     },
     init () {
-      debugger
       let xAxisData = this.data1
       let seriesData1 = this.data2
       let option = {

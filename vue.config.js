@@ -41,9 +41,9 @@ module.exports = {
   //   proxy: 'localhost:3000'
   // }
   devServer: {
-        host: '0.0.0.0',
-        hot: true,
-        disableHostCheck: true,
-    },
+    host: '0.0.0.0',
+    hot: true,
+    disableHostCheck: true
+  }
 
 }

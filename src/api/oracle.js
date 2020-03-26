@@ -202,3 +202,39 @@ export const getOracleTopSql = parameter => {
     method: 'get'
   })
 }
+
+export const getOracleSnapList = parameter => {
+  return axios.request({
+    url: `/oracle/api/oracle-snap-list?${parameter}`,
+    method: 'get'
+  })
+}
+
+export const getOracleReportList = parameter => {
+  return axios.request({
+    url: `/oracle/api/oracle-report-list?${parameter}`,
+    method: 'get'
+  })
+}
+
+export const getOracleReport = parameter => {
+  return axios.request({
+    url: `/oracle/api/oracle-get-report?${parameter}`,
+    method: 'get'
+  })
+}
+
+export const createOracleReport = data => {
+  return axios.request({
+    url: '/oracle/api/oracle-create-report',
+    data: data,
+    method: 'post'
+  })
+}
+
+export const deleteOracleReport = id => {
+  return axios.request({
+    url: `/oracle/api/oracle-report/${id}`,
+    method: 'delete'
+  })
+}
