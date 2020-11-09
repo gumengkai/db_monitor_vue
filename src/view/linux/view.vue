@@ -126,7 +126,7 @@ export default {
           }
         },
         {
-          title: '剩余空间(mb)',
+          title: '剩余空间(GB)',
           key: 'free_size',
           width: 120
         }
