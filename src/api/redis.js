@@ -28,7 +28,6 @@ export const getRedisConfig = parameter => {
   })
 }
 
-
 export const getRedisSlowLog = parameter => {
   return axios.request({
     url: `/rds/api/get-redis-slowlog?${parameter}`,
@@ -49,4 +48,3 @@ export const getRedisImmediateStats = parameter => {
     method: 'get'
   })
 }
-

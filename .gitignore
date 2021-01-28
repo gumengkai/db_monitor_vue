@@ -25,4 +25,9 @@ yarn-error.log*
 *.sln
 *.sw*
 
+*.history
+
+index_*.js
+.gitignore_*
+
 build/env.js

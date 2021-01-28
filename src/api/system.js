@@ -29,7 +29,6 @@ export const deleteAlarmCconf = id => {
   })
 }
 
-
 export const getAlarmInfo = parameter => {
   return axios.request({
     url: `/system/api/alarm-info?${parameter}`,
@@ -37,3 +36,17 @@ export const getAlarmInfo = parameter => {
   })
 }
 
+export const setupOracleRac = data => {
+  return axios.request({
+    url: '/system/api/oracle-rac-setup',
+    data: data,
+    method: 'post'
+  })
+}
+
+export const getSetupLog = parameter => {
+  return axios.request({
+    url: `/system/api/setup-log?${parameter}`,
+    method: 'get'
+  })
+}
