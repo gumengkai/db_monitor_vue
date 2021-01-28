@@ -147,14 +147,17 @@
             </Col>
           </Row>
           <FormItem>
+            <Button type="primary" style="margin-right: 16px" @click="handleSubmit('formData','linux')">
+              step1：linux基础配置
+            </Button>
             <Button type="primary" style="margin-right: 16px" @click="handleSubmit('formData','rac')">
-              step1：集群件安装
+              step2：集群件安装
             </Button>
             <Button type="primary" style="margin-right: 16px" @click="handleSubmit('formData','oracle')">
-              step2：Oracle软件安装
+              step3：Oracle软件安装
             </Button>
             <Button type="primary" style="margin-right: 32px" @click="handleSubmit('formData','dbca')">
-              step3：DBCA建库
+              step4：DBCA建库
             </Button>
           </FormItem>
           <FormItem>
