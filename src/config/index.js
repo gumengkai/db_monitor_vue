@@ -18,8 +18,8 @@ export default {
    */
   baseUrl: {
     // dev: 'https://www.easy-mock.com/mock/5add9213ce4d0e69998a6f51/iview-admin/',
-    dev: 'http://172.30.64.70:8001/',
-    pro: 'http://172.30.64.70:8001/'
+    dev: 'http://192.168.48.51:8000/',
+    pro: 'http://192.168.48.51:8000/'
   },
   /**
    * @description 默认打开的首页的路由name值，默认为home

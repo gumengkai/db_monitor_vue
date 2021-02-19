@@ -29,45 +29,20 @@
               </FormItem>
             </Col>
           </Row>
-          <Alert show-icon>
-            Oracle集群网络配置
-          </Alert>
           <Row :gutter="32">
-            <Col span="6">
-              <FormItem label="SCAN IP" label-position="top" prop="scan_ip">
-                <Input v-model="formData.scan_ip" placeholder="Single Client Access Name">
-                </Input>
+            <Col span="4">
+              <FormItem label="IP地址" label-position="top" prop="node_ip">
+                <Input v-model="formData.node_ip" placeholder="如192.168.48.11" />
               </FormItem>
             </Col>
-          </Row>
-          <Row :gutter="32">
-            <Col span="6">
-              <FormItem label="PUBLIC网卡" label-position="top" prop="public_interface">
-                <Input v-model="formData.public_interface" placeholder="用于外部访问,如ens32"
-                />
-              </FormItem>
-            </Col>
-            <Col span="6">
-              <FormItem label="PUBLIC Subnet" label-position="top" prop="public_subnet">
-                <Input v-model="formData.public_subnet" placeholder="用于外部访问,如192.168.48.0"
-                />
-              </FormItem>
-            </Col>
-            <Col span="6">
-              <FormItem label="PRIVATE网卡" label-position="top" prop="private_interface">
-                <Input v-model="formData.private_interface" placeholder="用于节点间通信，如ens35"
-                />
-              </FormItem>
-            </Col>
-            <Col span="6">
-              <FormItem label="PRIVATE Subnet" label-position="top" prop="private_subnet">
-                <Input v-model="formData.private_subnet" placeholder="用于节点间通信，如10.10.10.0"
-                />
+            <Col span="4">
+              <FormItem label="root密码" label-position="top" prop="node_password">
+                <Input type="password" v-model="formData.node_password" />
               </FormItem>
             </Col>
           </Row>
           <Alert show-icon>
-            共享磁盘配置
+            ASM磁盘配置
           </Alert>
           <Row :gutter="32">
             <Col span="6">
@@ -84,63 +59,6 @@
               <FormItem label="DATA磁盘" label-position="top" prop="data_disk">
                 <Input v-model="formData.data_disk" placeholder="如asm-data">
                 </Input>
-              </FormItem>
-            </Col>
-          </Row>
-          <Alert show-icon>
-            节点配置
-          </Alert>
-          <Row :gutter="32">
-            <Col span="4">
-              <FormItem label="节点编号" label-position="top" prop="node1_id">
-                <Input v-model="formData.node1_id" disabled placeholder="1,2.." />
-              </FormItem>
-            </Col>
-            <Col span="4">
-              <FormItem label="root密码" label-position="top" prop="node1_password">
-                <Input type="password" v-model="formData.node1_password" />
-              </FormItem>
-            </Col>
-            <Col span="4">
-              <FormItem label="IP地址" label-position="top" prop="node1_ip">
-                <Input v-model="formData.node1_ip" placeholder="如192.168.48.11" />
-              </FormItem>
-            </Col>
-            <Col span="4">
-              <FormItem label="VIP地址" label-position="top" prop="node1_vip">
-                <Input v-model="formData.node1_vip" placeholder="如192.168.48.13" />
-              </FormItem>
-            </Col>
-            <Col span="4">
-              <FormItem label="PRIVATE IP地址" label-position="top" prop="node1_priv_ip">
-                <Input v-model="formData.node1_priv_ip" placeholder="如10.10.10.101" />
-              </FormItem>
-            </Col>
-          </Row>
-          <Row :gutter="32">
-            <Col span="4">
-              <FormItem label="节点编号" label-position="top" prop="node2_id">
-                <Input v-model="formData.node2_id" disabled placeholder="1,2.." />
-              </FormItem>
-            </Col>
-            <Col span="4">
-              <FormItem label="root密码" label-position="top" prop="node2_password">
-                <Input type="password" v-model="formData.node2_password" />
-              </FormItem>
-            </Col>
-            <Col span="4">
-              <FormItem label="IP地址" label-position="top" prop="node2_ip">
-                <Input v-model="formData.node2_ip" placeholder="如192.168.48.12" />
-              </FormItem>
-            </Col>
-            <Col span="4">
-              <FormItem label="VIP地址" label-position="top" prop="node2_vip">
-                <Input v-model="formData.node2_vip" placeholder="如192.168.48.14" />
-              </FormItem>
-            </Col>
-            <Col span="4">
-              <FormItem label="PRIVATE IP地址" label-position="top" prop="node2_priv_ip">
-                <Input v-model="formData.node2_priv_ip" placeholder="如10.10.10.102" />
               </FormItem>
             </Col>
           </Row>
@@ -164,7 +82,7 @@
             </Button>
             <Tooltip placement="top">
               <Button type="error" style="margin-right: 16px"  @click="handleSubmit('formData','clear')">
-                慎用：RAC安装清理
+                慎用：RAC One Node安装清理
               </Button>
               <div slot="content">
                 <p>
@@ -181,7 +99,7 @@
 </template>
 
 <script>
-import { getSetupLog, setupOracleRac } from '@/api/system'
+import { getSetupLog, setupOracleRacOneNode } from '@/api/system'
 import { formatDate } from '@/libs/tools'
 export default {
   data () {
@@ -224,59 +142,21 @@ export default {
         dbname: '',
         hostname: '',
         pdbname: '',
-        scan_ip: '',
-        public_interface: '',
-        public_subnet: '',
-        private_interface: '',
-        private_subnet: '',
         disk_path: '',
         ocr_disk: '',
         data_disk: '',
-        node1_id: 1,
-        node1_password: '',
-        node1_ip: '',
-        node1_vip: '',
-        node1_priv_ip: '',
-        node2_id: 2,
-        node2_password: '',
-        node2_ip: '',
-        node2_vip: '',
-        node2_priv_ip: ''
+        node_ip: '',
+        node_password: ''
       },
       ruleValidate: {
         dbname: [{ required: true, message: '此项目必填', trigger: 'blur' }],
         hostname: [{ required: true, message: '此项目必填', trigger: 'blur' }],
         pdbname: [{ required: true, message: '此项目必填', trigger: 'blur' }],
-        scan_ip: [{ required: true, message: '此项目必填', trigger: 'blur' }],
-        public_interface: [
-          { required: true, message: '此项目必填', trigger: 'blur' }
-        ],
-        public_subnet: [
-          { required: true, message: '此项目必填', trigger: 'blur' }
-        ],
-        private_interface: [
-          { required: true, message: '此项目必填', trigger: 'blur' }
-        ],
-        private_subnet: [
-          { required: true, message: '此项目必填', trigger: 'blur' }
-        ],
         disk_path: [{ required: true, message: '此项目必填', trigger: 'blur' }],
         ocr_disk: [{ required: true, message: '此项目必填', trigger: 'blur' }],
         data_disk: [{ required: true, message: '此项目必填', trigger: 'blur' }],
-        node1_password: [
-          { required: true, message: '此项目必填', trigger: 'blur' }
-        ],
-        node1_ip: [{ required: true, message: '此项目必填', trigger: 'blur' }],
-        node1_vip: [{ required: true, message: '此项目必填', trigger: 'blur' }],
-        node1_priv_ip: [
-          { required: true, message: '此项目必填', trigger: 'blur' }
-        ],
-        node2_password: [
-          { required: true, message: '此项目必填', trigger: 'blur' }
-        ],
-        node2_ip: [{ required: true, message: '此项目必填', trigger: 'blur' }],
-        node2_vip: [{ required: true, message: '此项目必填', trigger: 'blur' }],
-        node2_priv_ip: [
+        node_ip: [{ required: true, message: '此项目必填', trigger: 'blur' }],
+        node_password: [
           { required: true, message: '此项目必填', trigger: 'blur' }
         ]
       }
@@ -310,15 +190,15 @@ export default {
       this.$refs[name].validate((valid) => {
         console.log()
         if (valid) {
-          setupOracleRac(this.formData)
+          setupOracleRacOneNode(this.formData)
             .then((res) => {
               console.log(res)
-              this.$Message.success('Oracle RAC安装已启动!')
+              this.$Message.success('Oracle RAC One Node安装已启动!')
             })
             .catch((err) => {
               console.log(err.response)
               this.$Message.error({
-                content: `Oracle RAC安装启动失败 ${Object.entries(
+                content: `Oracle RAC One Node安装启动失败 ${Object.entries(
                   err.response.data
                 )}`,
                 duration: 10,

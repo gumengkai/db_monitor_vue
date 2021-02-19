@@ -44,6 +44,14 @@ export const setupOracleRac = data => {
   })
 }
 
+export const setupOracleRacOneNode = data => {
+  return axios.request({
+    url: '/system/api/oracle-rac-onenode-setup',
+    data: data,
+    method: 'post'
+  })
+}
+
 export const getSetupLog = parameter => {
   return axios.request({
     url: `/system/api/setup-log?${parameter}`,
