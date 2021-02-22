@@ -3,7 +3,7 @@
     <Card>
       <Row>
         <Drawer title="安装日志" v-model="showlog" width="720" :mask-closable="this.close"
-        :styles="styles">
+                :styles="styles">
           <Table size="small" :columns="columns" :data="data">
           </Table>
         </Drawer>
@@ -14,12 +14,12 @@
           <Row :gutter="32">
             <Col span="6">
               <FormItem label="数据库名" label-position="top" prop="dbname">
-                <Input v-model="formData.dbname" placeholder="如orcl" />
+                <Input v-model="formData.dbname" placeholder="如orcl"/>
               </FormItem>
             </Col>
             <Col span="6">
               <FormItem label="主机名" label-position="top" prop="hostname">
-                <Input v-model="formData.hostname" placeholder="如db" />
+                <Input v-model="formData.hostname" placeholder="如db"/>
               </FormItem>
             </Col>
             <Col span="6">
@@ -32,12 +32,12 @@
           <Row :gutter="32">
             <Col span="4">
               <FormItem label="IP地址" label-position="top" prop="node_ip">
-                <Input v-model="formData.node_ip" placeholder="如192.168.48.11" />
+                <Input v-model="formData.node_ip" placeholder="如192.168.48.11"/>
               </FormItem>
             </Col>
             <Col span="4">
               <FormItem label="root密码" label-position="top" prop="node_password">
-                <Input type="password" v-model="formData.node_password" />
+                <Input type="password" v-model="formData.node_password"/>
               </FormItem>
             </Col>
           </Row>
@@ -47,12 +47,12 @@
           <Row :gutter="32">
             <Col span="6">
               <FormItem label="磁盘路径" label-position="top" prop="disk_path">
-                <Input v-model="formData.disk_path" placeholder="如/dev/mapper/asm*" />
+                <Input v-model="formData.disk_path" placeholder="如/dev/mapper/asm*"/>
               </FormItem>
             </Col>
             <Col span="6">
               <FormItem label="OCR磁盘" label-position="top" prop="ocr_disk">
-                <Input v-model="formData.ocr_disk" placeholder="如asm-ocr" />
+                <Input v-model="formData.ocr_disk" placeholder="如asm-ocr"/>
               </FormItem>
             </Col>
             <Col span="6">
@@ -81,8 +81,8 @@
               查看安装日志
             </Button>
             <Tooltip placement="top">
-              <Button type="error" style="margin-right: 16px"  @click="handleSubmit('formData','clear')">
-                慎用：RAC One Node安装清理
+              <Button type="error" style="margin-right: 16px" @click="handleSubmit('formData','clear')">
+                慎用：Oracle RAC One Node安装清理
               </Button>
               <div slot="content">
                 <p>
@@ -90,7 +90,6 @@
                 </p>
               </div>
             </Tooltip>
-          </FormItem>
           </FormItem>
         </Form>
       </Row>
@@ -101,6 +100,7 @@
 <script>
 import { getSetupLog, setupOracleRacOneNode } from '@/api/system'
 import { formatDate } from '@/libs/tools'
+
 export default {
   data () {
     return {

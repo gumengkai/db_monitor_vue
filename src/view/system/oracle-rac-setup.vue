@@ -164,7 +164,7 @@
             </Button>
             <Tooltip placement="top">
               <Button type="error" style="margin-right: 16px" @click="handleSubmit('formData','clear')">
-                慎用：RAC安装清理
+                慎用：Oracle RAC安装清理
               </Button>
               <div slot="content">
                 <p>
@@ -180,11 +180,11 @@
 </template>
 
 <script>
-import {getSetupLog, setupOracleRac} from '@/api/system'
-import {formatDate} from '@/libs/tools'
+import { getSetupLog, setupOracleRac } from '@/api/system'
+import { formatDate } from '@/libs/tools'
 
 export default {
-  data() {
+  data () {
     return {
       columns: [
         {
@@ -244,57 +244,57 @@ export default {
         node2_priv_ip: ''
       },
       ruleValidate: {
-        dbname: [{required: true, message: '此项目必填', trigger: 'blur'}],
-        hostname: [{required: true, message: '此项目必填', trigger: 'blur'}],
-        pdbname: [{required: true, message: '此项目必填', trigger: 'blur'}],
-        scan_ip: [{required: true, message: '此项目必填', trigger: 'blur'}],
+        dbname: [{ required: true, message: '此项目必填', trigger: 'blur' }],
+        hostname: [{ required: true, message: '此项目必填', trigger: 'blur' }],
+        pdbname: [{ required: true, message: '此项目必填', trigger: 'blur' }],
+        scan_ip: [{ required: true, message: '此项目必填', trigger: 'blur' }],
         public_interface: [
-          {required: true, message: '此项目必填', trigger: 'blur'}
+          { required: true, message: '此项目必填', trigger: 'blur' }
         ],
         public_subnet: [
-          {required: true, message: '此项目必填', trigger: 'blur'}
+          { required: true, message: '此项目必填', trigger: 'blur' }
         ],
         private_interface: [
-          {required: true, message: '此项目必填', trigger: 'blur'}
+          { required: true, message: '此项目必填', trigger: 'blur' }
         ],
         private_subnet: [
-          {required: true, message: '此项目必填', trigger: 'blur'}
+          { required: true, message: '此项目必填', trigger: 'blur' }
         ],
-        disk_path: [{required: true, message: '此项目必填', trigger: 'blur'}],
-        ocr_disk: [{required: true, message: '此项目必填', trigger: 'blur'}],
-        data_disk: [{required: true, message: '此项目必填', trigger: 'blur'}],
+        disk_path: [{ required: true, message: '此项目必填', trigger: 'blur' }],
+        ocr_disk: [{ required: true, message: '此项目必填', trigger: 'blur' }],
+        data_disk: [{ required: true, message: '此项目必填', trigger: 'blur' }],
         node1_password: [
-          {required: true, message: '此项目必填', trigger: 'blur'}
+          { required: true, message: '此项目必填', trigger: 'blur' }
         ],
-        node1_ip: [{required: true, message: '此项目必填', trigger: 'blur'}],
-        node1_vip: [{required: true, message: '此项目必填', trigger: 'blur'}],
+        node1_ip: [{ required: true, message: '此项目必填', trigger: 'blur' }],
+        node1_vip: [{ required: true, message: '此项目必填', trigger: 'blur' }],
         node1_priv_ip: [
-          {required: true, message: '此项目必填', trigger: 'blur'}
+          { required: true, message: '此项目必填', trigger: 'blur' }
         ],
         node2_password: [
-          {required: true, message: '此项目必填', trigger: 'blur'}
+          { required: true, message: '此项目必填', trigger: 'blur' }
         ],
-        node2_ip: [{required: true, message: '此项目必填', trigger: 'blur'}],
-        node2_vip: [{required: true, message: '此项目必填', trigger: 'blur'}],
+        node2_ip: [{ required: true, message: '此项目必填', trigger: 'blur' }],
+        node2_vip: [{ required: true, message: '此项目必填', trigger: 'blur' }],
         node2_priv_ip: [
-          {required: true, message: '此项目必填', trigger: 'blur'}
+          { required: true, message: '此项目必填', trigger: 'blur' }
         ]
       }
     }
   },
-  created() {
+  created () {
     this.get_setup_log()
     this.timer = setInterval(() => {
       this.get_setup_log()
     }, 1000 * 5)
   },
   computed: {
-    access() {
+    access () {
       return this.$store.state.user.access
     }
   },
   methods: {
-    get_setup_log() {
+    get_setup_log () {
       getSetupLog()
         .then((res) => {
           this.data = res.data
@@ -304,7 +304,7 @@ export default {
           this.$Message.error(`获取日志信息错误 ${err}`)
         })
     },
-    handleSubmit(name, module) {
+    handleSubmit (name, module) {
       this.showlog = true
       this.formData.module = module
       this.$refs[name].validate((valid) => {
@@ -330,10 +330,10 @@ export default {
         }
       })
     },
-    showLog() {
+    showLog () {
       this.showlog = true
     },
-    destroyed() {
+    destroyed () {
       clearInterval(this.timer)
     }
   }
