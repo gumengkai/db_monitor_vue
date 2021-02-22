@@ -3,7 +3,7 @@
     <Card>
       <Row>
         <Drawer title="安装日志" v-model="showlog" width="720" :mask-closable="this.close"
-        :styles="styles">
+                :styles="styles">
           <Table size="small" :columns="columns" :data="data">
           </Table>
         </Drawer>
@@ -14,12 +14,12 @@
           <Row :gutter="32">
             <Col span="6">
               <FormItem label="数据库名" label-position="top" prop="dbname">
-                <Input v-model="formData.dbname" placeholder="如orcl" />
+                <Input v-model="formData.dbname" placeholder="如orcl"/>
               </FormItem>
             </Col>
             <Col span="6">
               <FormItem label="主机名" label-position="top" prop="hostname">
-                <Input v-model="formData.hostname" placeholder="如db" />
+                <Input v-model="formData.hostname" placeholder="如db"/>
               </FormItem>
             </Col>
             <Col span="6">
@@ -72,12 +72,12 @@
           <Row :gutter="32">
             <Col span="6">
               <FormItem label="磁盘路径" label-position="top" prop="disk_path">
-                <Input v-model="formData.disk_path" placeholder="如/dev/mapper/asm*" />
+                <Input v-model="formData.disk_path" placeholder="如/dev/mapper/asm*"/>
               </FormItem>
             </Col>
             <Col span="6">
               <FormItem label="OCR磁盘" label-position="top" prop="ocr_disk">
-                <Input v-model="formData.ocr_disk" placeholder="如asm-ocr" />
+                <Input v-model="formData.ocr_disk" placeholder="如asm-ocr"/>
               </FormItem>
             </Col>
             <Col span="6">
@@ -93,54 +93,54 @@
           <Row :gutter="32">
             <Col span="4">
               <FormItem label="节点编号" label-position="top" prop="node1_id">
-                <Input v-model="formData.node1_id" disabled placeholder="1,2.." />
+                <Input v-model="formData.node1_id" disabled placeholder="1,2.."/>
               </FormItem>
             </Col>
             <Col span="4">
               <FormItem label="root密码" label-position="top" prop="node1_password">
-                <Input type="password" v-model="formData.node1_password" />
+                <Input type="password" v-model="formData.node1_password"/>
               </FormItem>
             </Col>
             <Col span="4">
               <FormItem label="IP地址" label-position="top" prop="node1_ip">
-                <Input v-model="formData.node1_ip" placeholder="如192.168.48.11" />
+                <Input v-model="formData.node1_ip" placeholder="如192.168.48.11"/>
               </FormItem>
             </Col>
             <Col span="4">
               <FormItem label="VIP地址" label-position="top" prop="node1_vip">
-                <Input v-model="formData.node1_vip" placeholder="如192.168.48.13" />
+                <Input v-model="formData.node1_vip" placeholder="如192.168.48.13"/>
               </FormItem>
             </Col>
             <Col span="4">
               <FormItem label="PRIVATE IP地址" label-position="top" prop="node1_priv_ip">
-                <Input v-model="formData.node1_priv_ip" placeholder="如10.10.10.101" />
+                <Input v-model="formData.node1_priv_ip" placeholder="如10.10.10.101"/>
               </FormItem>
             </Col>
           </Row>
           <Row :gutter="32">
             <Col span="4">
               <FormItem label="节点编号" label-position="top" prop="node2_id">
-                <Input v-model="formData.node2_id" disabled placeholder="1,2.." />
+                <Input v-model="formData.node2_id" disabled placeholder="1,2.."/>
               </FormItem>
             </Col>
             <Col span="4">
               <FormItem label="root密码" label-position="top" prop="node2_password">
-                <Input type="password" v-model="formData.node2_password" />
+                <Input type="password" v-model="formData.node2_password"/>
               </FormItem>
             </Col>
             <Col span="4">
               <FormItem label="IP地址" label-position="top" prop="node2_ip">
-                <Input v-model="formData.node2_ip" placeholder="如192.168.48.12" />
+                <Input v-model="formData.node2_ip" placeholder="如192.168.48.12"/>
               </FormItem>
             </Col>
             <Col span="4">
               <FormItem label="VIP地址" label-position="top" prop="node2_vip">
-                <Input v-model="formData.node2_vip" placeholder="如192.168.48.14" />
+                <Input v-model="formData.node2_vip" placeholder="如192.168.48.14"/>
               </FormItem>
             </Col>
             <Col span="4">
               <FormItem label="PRIVATE IP地址" label-position="top" prop="node2_priv_ip">
-                <Input v-model="formData.node2_priv_ip" placeholder="如10.10.10.102" />
+                <Input v-model="formData.node2_priv_ip" placeholder="如10.10.10.102"/>
               </FormItem>
             </Col>
           </Row>
@@ -163,7 +163,7 @@
               查看安装日志
             </Button>
             <Tooltip placement="top">
-              <Button type="error" style="margin-right: 16px"  @click="handleSubmit('formData','clear')">
+              <Button type="error" style="margin-right: 16px" @click="handleSubmit('formData','clear')">
                 慎用：RAC安装清理
               </Button>
               <div slot="content">
@@ -173,7 +173,6 @@
               </div>
             </Tooltip>
           </FormItem>
-          </FormItem>
         </Form>
       </Row>
     </Card>
@@ -181,10 +180,11 @@
 </template>
 
 <script>
-import { getSetupLog, setupOracleRac } from '@/api/system'
-import { formatDate } from '@/libs/tools'
+import {getSetupLog, setupOracleRac} from '@/api/system'
+import {formatDate} from '@/libs/tools'
+
 export default {
-  data () {
+  data() {
     return {
       columns: [
         {
@@ -244,57 +244,57 @@ export default {
         node2_priv_ip: ''
       },
       ruleValidate: {
-        dbname: [{ required: true, message: '此项目必填', trigger: 'blur' }],
-        hostname: [{ required: true, message: '此项目必填', trigger: 'blur' }],
-        pdbname: [{ required: true, message: '此项目必填', trigger: 'blur' }],
-        scan_ip: [{ required: true, message: '此项目必填', trigger: 'blur' }],
+        dbname: [{required: true, message: '此项目必填', trigger: 'blur'}],
+        hostname: [{required: true, message: '此项目必填', trigger: 'blur'}],
+        pdbname: [{required: true, message: '此项目必填', trigger: 'blur'}],
+        scan_ip: [{required: true, message: '此项目必填', trigger: 'blur'}],
         public_interface: [
-          { required: true, message: '此项目必填', trigger: 'blur' }
+          {required: true, message: '此项目必填', trigger: 'blur'}
         ],
         public_subnet: [
-          { required: true, message: '此项目必填', trigger: 'blur' }
+          {required: true, message: '此项目必填', trigger: 'blur'}
         ],
         private_interface: [
-          { required: true, message: '此项目必填', trigger: 'blur' }
+          {required: true, message: '此项目必填', trigger: 'blur'}
         ],
         private_subnet: [
-          { required: true, message: '此项目必填', trigger: 'blur' }
+          {required: true, message: '此项目必填', trigger: 'blur'}
         ],
-        disk_path: [{ required: true, message: '此项目必填', trigger: 'blur' }],
-        ocr_disk: [{ required: true, message: '此项目必填', trigger: 'blur' }],
-        data_disk: [{ required: true, message: '此项目必填', trigger: 'blur' }],
+        disk_path: [{required: true, message: '此项目必填', trigger: 'blur'}],
+        ocr_disk: [{required: true, message: '此项目必填', trigger: 'blur'}],
+        data_disk: [{required: true, message: '此项目必填', trigger: 'blur'}],
         node1_password: [
-          { required: true, message: '此项目必填', trigger: 'blur' }
+          {required: true, message: '此项目必填', trigger: 'blur'}
         ],
-        node1_ip: [{ required: true, message: '此项目必填', trigger: 'blur' }],
-        node1_vip: [{ required: true, message: '此项目必填', trigger: 'blur' }],
+        node1_ip: [{required: true, message: '此项目必填', trigger: 'blur'}],
+        node1_vip: [{required: true, message: '此项目必填', trigger: 'blur'}],
         node1_priv_ip: [
-          { required: true, message: '此项目必填', trigger: 'blur' }
+          {required: true, message: '此项目必填', trigger: 'blur'}
         ],
         node2_password: [
-          { required: true, message: '此项目必填', trigger: 'blur' }
+          {required: true, message: '此项目必填', trigger: 'blur'}
         ],
-        node2_ip: [{ required: true, message: '此项目必填', trigger: 'blur' }],
-        node2_vip: [{ required: true, message: '此项目必填', trigger: 'blur' }],
+        node2_ip: [{required: true, message: '此项目必填', trigger: 'blur'}],
+        node2_vip: [{required: true, message: '此项目必填', trigger: 'blur'}],
         node2_priv_ip: [
-          { required: true, message: '此项目必填', trigger: 'blur' }
+          {required: true, message: '此项目必填', trigger: 'blur'}
         ]
       }
     }
   },
-  created () {
+  created() {
     this.get_setup_log()
     this.timer = setInterval(() => {
       this.get_setup_log()
     }, 1000 * 5)
   },
   computed: {
-    access () {
+    access() {
       return this.$store.state.user.access
     }
   },
   methods: {
-    get_setup_log () {
+    get_setup_log() {
       getSetupLog()
         .then((res) => {
           this.data = res.data
@@ -304,7 +304,7 @@ export default {
           this.$Message.error(`获取日志信息错误 ${err}`)
         })
     },
-    handleSubmit (name, module) {
+    handleSubmit(name, module) {
       this.showlog = true
       this.formData.module = module
       this.$refs[name].validate((valid) => {
@@ -330,10 +330,10 @@ export default {
         }
       })
     },
-    showLog () {
+    showLog() {
       this.showlog = true
     },
-    destroyed () {
+    destroyed() {
       clearInterval(this.timer)
     }
   }
