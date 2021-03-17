@@ -68,7 +68,7 @@ export default {
         {
           title: '主机名',
           key: 'hostname',
-          width: 80
+          width: 160
         },
         {
           title: '运行天数',

@@ -46,7 +46,7 @@ export default {
         },
         {
           title: '标签',
-          width: 100,
+          width: 140,
           sortable: true,
           render: (h, params) => {
             const tags = params.row.tags
@@ -68,7 +68,7 @@ export default {
         {
           title: '实例名',
           key: 'instance_name',
-          width: 80
+          width: 120
         },
         {
           title: '版本',
@@ -78,7 +78,7 @@ export default {
         {
           title: '角色',
           key: 'database_role',
-          width: 100
+          width: 200
         },
         {
           title: '运行天数',
@@ -142,6 +142,16 @@ export default {
           title: 'TPS',
           key: 'tps',
           width: 70
+        },
+        {
+          title: 'ADG传输延迟',
+          key: 'adg_trans_lag',
+          width: 120
+        },
+        {
+          title: 'ADG应用延迟',
+          key: 'adg_apply_lag',
+          width: 120
         },
         {
           title: '状态',

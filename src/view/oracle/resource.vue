@@ -177,7 +177,7 @@ export default {
         },
         {
           title: '表空间',
-          width: 100,
+          width: 200,
           sortable: true,
           render: (h, params) => {
             const tags = params.row.tags
@@ -390,12 +390,12 @@ export default {
         {
           title: '组',
           key: 'group_no',
-          width: 30
+          width: 60
         },
         {
           title: '序号',
           key: 'sequence_no',
-          width: 60
+          width: 120
         },
         {
           title: '日志文件',
@@ -422,7 +422,7 @@ export default {
         {
           title: '段名',
           key: 'SEGMENT_NAME',
-          width: 200
+          width: 300
         },
         {
           title: '分区名',
@@ -432,12 +432,12 @@ export default {
         {
           title: '类型',
           key: 'SEGMENT_TYPE',
-          width: 150
+          width: 170
         },
         {
           title: '表空间',
           key: 'TABLESPACE_NAME',
-          width: 150
+          width: 160
         },
         {
           title: '使用空间(M)',
@@ -454,7 +454,7 @@ export default {
         {
           title: '序列名',
           key: 'SEQUENCE_NAME',
-          width: 180
+          width: 300
         },
         {
           title: '最小序列号',
@@ -565,7 +565,7 @@ export default {
         {
           title: '默认表空间',
           key: 'DEFAULT_TABLESPACE',
-          width: 100
+          width: 200
         },
         {
           title: '临时表空间',

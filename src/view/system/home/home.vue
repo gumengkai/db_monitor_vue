@@ -65,7 +65,7 @@
           ></chart-pie3>
         </Card>
       </i-col>
-      <i-col span="14">
+      <i-col span="12">
         <card>
           <p slot="title" style="font-size: larger">
             <Icon type="ios-warning"></Icon>
