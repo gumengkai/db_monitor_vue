@@ -60,6 +60,14 @@ export const setupOracleOneNode = data => {
   })
 }
 
+export const setupMysql = data => {
+  return axios.request({
+    url: '/system/api/mysql-setup',
+    data: data,
+    method: 'post'
+  })
+}
+
 export const getSetupLog = parameter => {
   return axios.request({
     url: `/system/api/setup-log?${parameter}`,

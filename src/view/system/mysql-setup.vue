@@ -12,29 +12,40 @@
           <Table size="small" :columns="columns" :data="data"> </Table>
         </Drawer>
         <Form ref="formData" :model="formData" :rules="ruleValidate">
-          <Alert show-icon> Oracle基础配置 </Alert>
+          <Alert show-icon> MySQL安装配置 </Alert>
           <Row :gutter="32">
             <Col span="6">
-              <FormItem label="数据库名" label-position="top" prop="dbname">
-                <Input v-model="formData.dbname" placeholder="如orcl" />
+              <FormItem label="MySQL安装路径" label-position="top" prop="mysql_path">
+                <Input v-model="formData.mysql_path" placeholder="如/u01/my3306" />
               </FormItem>
             </Col>
             <Col span="6">
-              <FormItem label="主机名" label-position="top" prop="hostname">
-                <Input v-model="formData.hostname" placeholder="如db" />
+              <FormItem label="数据文件路径" label-position="top" prop="data_path">
+                <Input v-model="formData.data_path" placeholder="如/data/my3306" />
               </FormItem>
             </Col>
             <Col span="6">
-              <FormItem label="pdb名" label-position="top" prop="pdbname">
-                <Input v-model="formData.pdbname" placeholder="如pdb1"> </Input>
+              <FormItem label="端口号" label-position="top" prop="port">
+                <Input v-model="formData.port" placeholder="如3306"> </Input>
+              </FormItem>
+            </Col>
+             <Col span="6">
+              <FormItem label="MySQL版本"
+                        label-position="top"
+                        prop="version">
+                <Select v-model="formData.version"
+                        placeholder="">
+                  <Option value="MySQL5.7">MySQL5.7</Option>
+                  <Option value="MySQL8.0">MySQL8.0</Option>
+                </Select>
               </FormItem>
             </Col>
           </Row>
           <Row :gutter="32">
             <Col span="4">
-              <FormItem label="IP地址" label-position="top" prop="node_ip">
+              <FormItem label="IP地址" label-position="top" prop="ip">
                 <Input
-                  v-model="formData.node_ip"
+                  v-model="formData.ip"
                   placeholder="如192.168.48.11"
                 />
               </FormItem>
@@ -43,9 +54,17 @@
               <FormItem
                 label="root密码"
                 label-position="top"
-                prop="node_password"
+                prop="password"
               >
-                <Input type="password" v-model="formData.node_password" />
+                <Input type="password" v-model="formData.password" />
+              </FormItem>
+            </Col>
+            <Col span="4">
+              <FormItem label="服务器物理内存(GB)" label-position="top" prop="memory">
+                <Input
+                  v-model="formData.memory"
+                  placeholder="如32"
+                />
               </FormItem>
             </Col>
           </Row>
@@ -53,26 +72,10 @@
             <Button
               type="primary"
               style="margin-right: 16px"
-              @click="handleSubmit('formData', 'linux')"
+              @click="handleSubmit('formData', 'mysql')"
             >
-              step1：linux基础配置
+              开始安装
             </Button>
-            <Button
-              type="primary"
-              style="margin-right: 16px"
-              @click="handleSubmit('formData', 'oracle')"
-            >
-              step2：Oracle软件安装
-            </Button>
-            <Button
-              type="primary"
-              style="margin-right: 32px"
-              @click="handleSubmit('formData', 'dbca')"
-            >
-              step3：DBCA建库
-            </Button>
-          </FormItem>
-          <FormItem>
             <Button
               type="info"
               ghost
@@ -82,16 +85,6 @@
               查看安装日志
             </Button>
             <Tooltip placement="top">
-              <Button
-                type="error"
-                style="margin-right: 16px"
-                @click="handleSubmit('formData', 'clear')"
-              >
-                慎用：Oracle One Node安装清理
-              </Button>
-              <div slot="content">
-                <p>清理完成后会自动重启主机</p>
-              </div>
             </Tooltip>
           </FormItem>
         </Form>
@@ -101,7 +94,7 @@
 </template>
 
 <script>
-import { getSetupLog, setupOracleOneNode } from '@/api/system'
+import { getSetupLog, setupMysql } from '@/api/system'
 import { formatDate } from '@/libs/tools'
 
 export default {
@@ -141,21 +134,17 @@ export default {
       },
       updateId: null,
       formData: {
-        module: '',
-        dbname: '',
-        hostname: '',
-        pdbname: '',
-        node_ip: '',
-        node_password: ''
+        version: 'MySQL5.7'
+
       },
       ruleValidate: {
-        dbname: [{ required: true, message: '此项目必填', trigger: 'blur' }],
-        hostname: [{ required: true, message: '此项目必填', trigger: 'blur' }],
-        pdbname: [{ required: true, message: '此项目必填', trigger: 'blur' }],
-        node_ip: [{ required: true, message: '此项目必填', trigger: 'blur' }],
-        node_password: [
-          { required: true, message: '此项目必填', trigger: 'blur' }
-        ]
+        mysql_path: [{ required: true, message: '此项目必填', trigger: 'blur' }],
+        data_path: [{ required: true, message: '此项目必填', trigger: 'blur' }],
+        port: [{ required: true, message: '此项目必填', trigger: 'blur' }],
+        version: [{ required: true, message: '此项目必填', trigger: 'blur' }],
+        ip: [{ required: true, message: '此项目必填', trigger: 'blur' }],
+        password: [{ required: true, message: '此项目必填', trigger: 'blur' }],
+        memory: [{ required: true, message: '此项目必填', trigger: 'blur' }]
       }
     }
   },
@@ -183,19 +172,18 @@ export default {
     },
     handleSubmit (name, module) {
       this.showlog = true
-      this.formData.module = module
       this.$refs[name].validate((valid) => {
         console.log()
         if (valid) {
-          setupOracleOneNode(this.formData)
+          setupMysql(this.formData)
             .then((res) => {
               console.log(res)
-              this.$Message.success('Oracle One Node安装已启动!')
+              this.$Message.success('MySQL安装已启动!')
             })
             .catch((err) => {
               console.log(err.response)
               this.$Message.error({
-                content: `Oracle One Node安装启动失败 ${Object.entries(
+                content: `MySQL安装启动失败 ${Object.entries(
                   err.response.data
                 )}`,
                 duration: 10,
