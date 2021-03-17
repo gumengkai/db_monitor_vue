@@ -46,7 +46,7 @@ export default {
         },
         {
           title: '标签',
-          width: 140,
+          width: 120,
           sortable: true,
           render: (h, params) => {
             const tags = params.row.tags
@@ -62,13 +62,13 @@ export default {
         {
           title: 'IP地址',
           key: 'host',
-          width: 150,
+          width: 120,
           sortable: true
         },
         {
           title: '实例名',
           key: 'instance_name',
-          width: 120
+          width: 100
         },
         {
           title: '版本',
@@ -78,7 +78,7 @@ export default {
         {
           title: '角色',
           key: 'database_role',
-          width: 200
+          width: 160
         },
         {
           title: '运行天数',
@@ -146,12 +146,44 @@ export default {
         {
           title: 'ADG传输延迟',
           key: 'adg_trans_lag',
-          width: 120
+          width: 130,
+          render: (h, params) => {
+            const adg_trans_lag = params.row.adg_trans_lag
+            const adg_trans_value = params.row.adg_trans_value
+            const database_role = params.row.database_role
+            if (adg_trans_value >= 1000) {
+              return h(Tag, { props: { color: 'error' } }, adg_trans_lag)
+            }
+            if (adg_trans_value >= 300) {
+              return h(Tag, { props: { color: 'warning' } }, adg_trans_lag)
+            }
+            if (database_role === 'PRIMARY') {
+              return null
+            } else {
+              return h(Tag, { props: { color: 'success' } }, adg_trans_lag)
+            }
+          }
         },
         {
           title: 'ADG应用延迟',
           key: 'adg_apply_lag',
-          width: 120
+          width: 130,
+          render: (h, params) => {
+            const adg_apply_lag = params.row.adg_apply_lag
+            const adg_apply_value = params.row.adg_apply_value
+            const database_role = params.row.database_role
+            if (adg_apply_value >= 1000) {
+              return h(Tag, { props: { color: 'error' } }, adg_apply_lag)
+            }
+            if (adg_apply_value >= 300) {
+              return h(Tag, { props: { color: 'warning' } }, adg_apply_lag)
+            }
+            if (database_role === 'PRIMARY') {
+              return null
+            } else {
+              return h(Tag, { props: { color: 'success' } }, adg_apply_lag)
+            }
+          }
         },
         {
           title: '状态',
